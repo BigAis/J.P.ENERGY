@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Solar Form Assets -->
+    <link rel="stylesheet" href="solar-form.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -46,7 +48,7 @@
                 <p>Sustainable energy solutions for a brighter future</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="#" class="btn btn-secondary start-project-btn">Start Your Solar Project</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -58,9 +60,7 @@
                 <i class="fas fa-chevron-down"></i>
             </a>
         </div>
-    </section>
-
-    <!-- About Section -->
+    </section><!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
@@ -152,11 +152,17 @@
                     <h3>Financing Options</h3>
                     <p>Various financing solutions to make solar energy accessible and affordable for all customers.</p>
                 </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Solar Panel Park Planning</h3>
+                    <p>Expert consultation for large-scale solar installations, including site assessment and project planning.</p>
+                    <a href="#" class="start-project-btn">Start Your Project</a>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Benefits Section -->
+    </section><!-- Benefits Section -->
     <section class="benefits">
         <div class="container">
             <div class="section-header">
@@ -272,9 +278,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
+    </section><!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <div class="section-header">
@@ -289,7 +293,7 @@
                     <div class="testimonial-author">
                         <img src="/api/placeholder/80/80" alt="Client 1">
                         <div class="author-info">
-                            <h4>Vasiliki Papadopoulou</h4>
+                            <h4>Georgios Konstantinou</h4>
                             <p>Homeowner, Kavala</p>
                         </div>
                     </div>
@@ -301,7 +305,7 @@
                     <div class="testimonial-author">
                         <img src="/api/placeholder/80/80" alt="Client 2">
                         <div class="author-info">
-                            <h4>Kyriakos Papadopoulos</h4>
+                            <h4>Maria Dimitriou</h4>
                             <p>Hotel Manager, Thessaloniki</p>
                         </div>
                     </div>
@@ -313,7 +317,7 @@
                     <div class="testimonial-author">
                         <img src="/api/placeholder/80/80" alt="Client 3">
                         <div class="author-info">
-                            <h4>Chris Papadopoulos</h4>
+                            <h4>Andreas Papanikolaou</h4>
                             <p>Factory Owner, Filippoi</p>
                         </div>
                     </div>
@@ -337,7 +341,7 @@
             <div class="cta-content">
                 <h2>Ready to Switch to <span class="highlight">Solar Energy?</span></h2>
                 <p>Contact us today for a free consultation and quote</p>
-                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#" class="btn btn-primary start-project-btn">Get Started</a>
             </div>
         </div>
     </section>
@@ -429,9 +433,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Map Section -->
+    </section><!-- Map Section -->
     <section class="map">
         <div class="map-container">
             <img src="/api/placeholder/1200/400" alt="Map location of J.P.ENERGY">
@@ -498,6 +500,311 @@
         </div>
     </div>
 
+    <!-- Solar Project Form HTML -->
+    <div id="dhq-form-modal" class="dhq-form-modal">
+        <div class="dhq-form-container"> 
+            <span id="close-form-modal" class="modal-close">&times;</span>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <form id="dhq-questionnaire" method="POST" action="https://script.google.com/macros/s/AKfycby6-AhtgHFzZt9_pcit9Aa5Sbn2iv78M56BIKMFVj8X27-kb8Ct778W98T5-jvyoAexiw/exec">
+                <!-- Question 1 -->
+                <div class="question active">
+                    <label>Do you own land for your solar panel installation? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Yes" data-name="OwnsLand">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, I own land" class="answer-image"/>
+                            <span class="answer-text">Yes</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="No" data-name="OwnsLand">
+                        <div class="image-wrapper">
+                            <img src="images/form/no-land.jpg" alt="No, I don't own land" class="answer-image"/>
+                            <span class="answer-text">No</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="OwnsLand">
+                </div>
+
+                <!-- Question 2 (for land owners) -->
+                <div class="question" data-condition="OwnsLand: Yes">
+                    <label>Where is your land located? *</label><br>
+                    <input type="text" name="LandLocation" placeholder="Enter city/region where your land is located..." class="dhq-input">
+                    <input type="hidden" name="LandLocation">
+                </div>
+
+                <!-- Question 3 (for land owners) -->
+                <div class="question" data-condition="OwnsLand: Yes & LandLocation">
+                    <label>What is the size of your available land in square meters? *</label><br>
+                    <input type="text" name="LandSize" placeholder="Enter the approximate size in square meters..." class="dhq-input">
+                    <input type="hidden" name="LandSize">
+                </div><!-- Question 4 (for non-land owners) -->
+                <div class="question" data-condition="OwnsLand: No">
+                    <label>Which region are you interested in setting up a solar installation? *</label><br>
+                    <input type="text" name="DesiredRegion" placeholder="Enter preferred region/city..." class="dhq-input">
+                    <input type="hidden" name="DesiredRegion">
+                </div>
+
+                <!-- Question 5 (for everyone) -->
+                <div class="question" data-condition="OwnsLand: Yes & LandSize | OwnsLand: No & DesiredRegion">
+                    <label>What type of solar installation are you interested in? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Ground-mounted Solar Park" data-name="InstallationType">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Ground-mounted Solar Park" class="answer-image"/>
+                            <span class="answer-text">Ground-mounted Solar Park</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Rooftop Solar Installation" data-name="InstallationType">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Rooftop Solar Installation" class="answer-image"/>
+                            <span class="answer-text">Rooftop Solar Installation</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Both Options" data-name="InstallationType">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Both Options" class="answer-image"/>
+                            <span class="answer-text">Both Options</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="InstallationType">
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question">
+                    <label>What is your planned system capacity? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Small (up to 20kW)" data-name="SystemCapacity">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Small (up to 20kW)" class="answer-image"/>
+                            <span class="answer-text">Small (up to 20kW)</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Medium (20-100kW)" data-name="SystemCapacity">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Medium (20-100kW)" class="answer-image"/>
+                            <span class="answer-text">Medium (20-100kW)</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Large (100kW-1MW)" data-name="SystemCapacity">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Large (100kW-1MW)" class="answer-image"/>
+                            <span class="answer-text">Large (100kW-1MW)</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Industrial (1MW+)" data-name="SystemCapacity">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Industrial (1MW+)" class="answer-image"/>
+                            <span class="answer-text">Industrial (1MW+)</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="SystemCapacity">
+                </div><!-- Question 7 -->
+                <div class="question">
+                    <label>What is your primary goal for this solar installation? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Self-consumption" data-name="ProjectGoal">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Self-consumption" class="answer-image"/>
+                            <span class="answer-text">Self-consumption</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Selling to Grid" data-name="ProjectGoal">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Selling to Grid" class="answer-image"/>
+                            <span class="answer-text">Selling to Grid</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Mixed" data-name="ProjectGoal">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Mixed" class="answer-image"/>
+                            <span class="answer-text">Mixed</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="ProjectGoal">
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question">
+                    <label>Do you require financing for your solar project? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Yes, full financing" data-name="FinancingNeeds">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, full financing" class="answer-image"/>
+                            <span class="answer-text">Yes, full financing</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Yes, partial financing" data-name="FinancingNeeds">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, partial financing" class="answer-image"/>
+                            <span class="answer-text">Yes, partial financing</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="No financing needed" data-name="FinancingNeeds">
+                        <div class="image-wrapper">
+                            <img src="images/form/no-land.jpg" alt="No financing needed" class="answer-image"/>
+                            <span class="answer-text">No financing needed</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="FinancingNeeds">
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question">
+                    <label>Are you interested in battery storage solutions? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Yes" data-name="BatteryStorage">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, interested in battery storage" class="answer-image"/>
+                            <span class="answer-text">Yes</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="No" data-name="BatteryStorage">
+                        <div class="image-wrapper">
+                            <img src="images/form/no-land.jpg" alt="No battery storage" class="answer-image"/>
+                            <span class="answer-text">No</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Need more information" data-name="BatteryStorage">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Need more information about batteries" class="answer-image"/>
+                            <span class="answer-text">Need more information</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="BatteryStorage">
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question">
+                    <label>Do you need help with permits and grid connection? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Yes, complete assistance" data-name="PermitAssistance">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, complete assistance" class="answer-image"/>
+                            <span class="answer-text">Yes, complete assistance</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Yes, partial assistance" data-name="PermitAssistance">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, partial assistance" class="answer-image"/>
+                            <span class="answer-text">Yes, partial assistance</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="No assistance needed" data-name="PermitAssistance">
+                        <div class="image-wrapper">
+                            <img src="images/form/no-land.jpg" alt="No assistance needed" class="answer-image"/>
+                            <span class="answer-text">No assistance needed</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="PermitAssistance">
+                </div><!-- Question 11 -->
+                <div class="question">
+                    <label>What is your budget range for this project? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Under €30,000" data-name="BudgetRange">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Under €30,000" class="answer-image"/>
+                            <span class="answer-text">Under €30,000</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="€30,000 - €100,000" data-name="BudgetRange">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="€30,000 - €100,000" class="answer-image"/>
+                            <span class="answer-text">€30,000 - €100,000</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="€100,000 - €500,000" data-name="BudgetRange">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="€100,000 - €500,000" class="answer-image"/>
+                            <span class="answer-text">€100,000 - €500,000</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="Above €500,000" data-name="BudgetRange">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Above €500,000" class="answer-image"/>
+                            <span class="answer-text">Above €500,000</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="BudgetRange">
+                </div>
+
+                <!-- Question 12 -->
+                <div class="question">
+                    <label>What is your expected timeline for project completion? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Within 3 months" data-name="Timeline">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Within 3 months" class="answer-image"/>
+                            <span class="answer-text">Within 3 months</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="3-6 months" data-name="Timeline">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="3-6 months" class="answer-image"/>
+                            <span class="answer-text">3-6 months</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="6-12 months" data-name="Timeline">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="6-12 months" class="answer-image"/>
+                            <span class="answer-text">6-12 months</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="More than 12 months" data-name="Timeline">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="More than 12 months" class="answer-image"/>
+                            <span class="answer-text">More than 12 months</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="Timeline">
+                </div>
+                
+                <!-- Question 13 -->
+                <div class="question">
+                    <label>Would you like to receive a detailed feasibility study? *</label><br>
+                    <button type="button" class="answer-btn" data-value="Yes" data-name="FeasibilityStudy">
+                        <div class="image-wrapper">
+                            <img src="images/form/yes-land.jpg" alt="Yes, interested in feasibility study" class="answer-image"/>
+                            <span class="answer-text">Yes</span>
+                        </div>
+                    </button>
+                    <button type="button" class="answer-btn" data-value="No" data-name="FeasibilityStudy">
+                        <div class="image-wrapper">
+                            <img src="images/form/no-land.jpg" alt="No feasibility study needed" class="answer-image"/>
+                            <span class="answer-text">No</span>
+                        </div>
+                    </button>
+                    <input type="hidden" name="FeasibilityStudy">
+                </div>
+                
+                <!-- Question 14 -->
+                <div class="question">
+                    <label>Please provide your full name: *</label><br>
+                    <input type="text" name="FullName" placeholder="Enter your full name" class="dhq-input">
+                    <input type="hidden" name="FullName">
+                </div>
+                
+                <!-- Question 15 -->
+                <div class="question">
+                    <label>Please provide your email address: *</label><br>
+                    <input type="email" name="Email" placeholder="Enter your email address" class="dhq-input">
+                    <input type="hidden" name="Email">
+                </div>
+                
+                <!-- Question 16 -->
+                <div class="question">
+                    <label>Please provide your phone number: *</label><br>
+                    <input type="text" name="Phone" placeholder="Enter your phone number" class="dhq-input">
+                    <input type="hidden" name="Phone">
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="buttons">
+                    <button type="button" id="prev" disabled>Previous</button>
+                    <button type="button" id="next">Next</button>
+                    <button type="submit" id="submit">Submit</button>
+                </div>
+
+                <!-- Hidden input to store submission time -->
+                <input type="hidden" name="submissionTime" id="submissionTime">
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="solar-form.js"></script>
 </body>
 </html>

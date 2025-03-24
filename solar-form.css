@@ -1,0 +1,339 @@
+/* Solar Panel Project Questionnaire Form Styles */
+.dhq-form-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease-in-out;
+}
+
+.dhq-form-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: var(--dark-color);
+    cursor: pointer;
+    z-index: 2001;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Modal Content Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Prevent Form Resizing When Switching Questions */
+.dhq-form-container {
+    width: 100%;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    backdrop-filter: blur(8px);
+    margin: 20px;
+    position: relative;
+    min-height: 500px; /* Ensures form remains stable */
+    transition: min-height 0.3s ease-in-out;
+}
+
+/* Progress Bar - Sleek and Responsive */
+.progress-bar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    height: 8px; /* Consistent height */
+}
+
+/* Dynamic Progress Animation */
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0;
+    transition: width 0.4s ease-in-out;
+}
+
+/* Ensuring a fixed height for all questions */
+.question {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    min-height: 150px; /* Consistent height across all questions */
+    padding: 15px;
+    overflow: hidden;
+    visibility: hidden; /* Ensure question is fully hidden until active */
+    position: absolute; /* Take out of flow until active */
+}
+
+/* Ensure active question displays smoothly without shifting */
+.question.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    height: auto;
+    visibility: visible;
+    position: relative;
+}
+
+/* Standardized Padding and Spacing */
+.question label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+    color: var(--dark-color);
+}
+
+/* Standardize Answer Button Size */
+.answer-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 220px;  /* Ensures consistent width */
+    margin: 10px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Ensure Image Buttons Stay Uniform */
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Standardize Image Sizes */
+.answer-image {
+    width: 100%;
+    height: 120px; /* Fixed height to prevent resizing */
+    object-fit: cover; /* Ensures images don't stretch */
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Overlay on Image */
+.answer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 90%;
+    text-align: center;
+}
+
+/* Hover Effect on Answer Buttons */
+.answer-btn:hover .answer-image {
+    transform: scale(1.05); /* Smooth hover effect */
+}
+
+/* Selected Answer Effect */
+.answer-btn.selected .answer-image {
+    transform: scale(1.05);
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+/* Input Fields - Consistent Styling */
+.dhq-input {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px;
+    margin-top: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus Effect */
+.dhq-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 159, 28, 0.4);
+}
+
+/* Error Indicator for Empty Fields */
+.dhq-input.error {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 8px rgba(244, 67, 54, 0.5);
+}
+
+/* Keep Buttons Fixed at Bottom of Form */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+    position: relative;
+}
+
+/* Prevent button movement on question change */
+.buttons button {
+    flex: 1;
+    text-align: center;
+    padding: 14px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Previous button */
+#prev {
+    background-color: #e6e8e6;
+    color: var(--dark-color);
+}
+
+#prev:hover:not(:disabled) {
+    background-color: #d0d2d0;
+}
+
+#prev:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Next button */
+#next {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#next:hover {
+    background-color: #25a99d;
+}
+
+/* Submit button */
+#submit {
+    background-color: var(--primary-color);
+    color: white;
+    display: none;
+}
+
+#submit:hover:not(:disabled) {
+    background-color: #e78c0e;
+}
+
+#submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+/* Success Message Styling */
+.success-message {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-message h2 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.success-message p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Solar Specific Styling */
+.solar-icon {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* Ensure Mobile Responsiveness */
+@media (max-width: 768px) {
+    .dhq-form-container {
+        width: 95%;
+        padding: 20px;
+        margin: 10px;
+        min-height: 450px;
+    }
+
+    .question label {
+        font-size: 16px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .buttons button {
+        margin: 5px 0;
+    }
+
+    .answer-btn {
+        max-width: 160px;
+    }
+    
+    .answer-text {
+        font-size: 14px;
+    }
+    
+    .progress-bar {
+        height: 6px; /* Slightly smaller for mobile */
+    }
+    
+    .success-message {
+        padding: 15px;
+    }
+    
+    .success-message h2 {
+        font-size: 20px;
+    }
+}
